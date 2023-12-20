@@ -15,20 +15,25 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 1;
-  
-  List <Widget> screen = [ToDo(),Pomodoro()];
+
+  List<Widget> screen = [ToDo(), Pomodoro()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      body: screen[_currentIndex],
+      body: Builder(
+        builder: (BuildContext context) {
+          return screen[_currentIndex];
+        },
+      ),
       extendBody: true,
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: 10),
+      // backgroundColor: Colors.pink,
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.only(bottom: 70),
         child: DotNavigationBar(
           margin: EdgeInsets.only(left: 10, right: 10),
           currentIndex: _currentIndex,
+          // backgroundColor: Colors.pink,
           backgroundColor: Colors.black,
           unselectedItemColor: Color(0xffA9ACA9),
           enableFloatingNavBar: true,
@@ -38,19 +43,14 @@ class _HomeState extends State<Home> {
             });
           },
           items: [
-            
             DotNavigationBarItem(
               icon: Icon(Icons.dashboard_customize_rounded),
               selectedColor: Colors.white,
             ),
-
-            
             DotNavigationBarItem(
               icon: Icon(Icons.home),
               selectedColor: Color(0xffA9ACA9),
             ),
-
-            
             DotNavigationBarItem(
               icon: Icon(Icons.calendar_month_rounded),
               selectedColor: Color(0xffA9ACA9),
